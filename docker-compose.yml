@@ -1,0 +1,21 @@
+version: "3.7"
+services: 
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: pruebatecnica-dev
+    container_name: pruebatecnica-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    ports: 
+      - 8090:80
+    volumes: 
+      - ./app-src/:/var/www/html
+    networks:
+      - pruebatecnica
+networks:
+  pruebatecnica:
+    driver: bridge
+volumes: 
+  app-src:
